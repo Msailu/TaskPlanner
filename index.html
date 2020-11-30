@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Task</title>
+    <link rel="stylesheet" href="../css/TaskPlanner.css"
+</head>
+<body>
+    <div class="container">
+        <h1>New Task</h1>
+       <form action="#">
+           
+            <label for="taskname">Task Name</label>
+            <input type="text" name="taskname" id="taskname">
+
+            <label for="taskdescription">Task Description</label>
+            <input type="textarea" name="taskdescription" id="taskdescription">
+
+            <label for="assignto">Assign To </label>
+            <input type="text" name="assignto" id="assignto">
+
+            <label for="duedate">Due Date</label>
+            <input type="date" id="start-date" name="start_date" />
+
+            <label for="status">Status</label>
+            <select name="status" id="status">
+                <option value='todo'>To do</option>
+                <option value='inprogress'>In Progress</option>
+                <option value='review'>Review</option>
+                <option value='done'>Done</option>
+            </select>    
+            
+            <input type="submit" value="Submit" class="btn">
+            <input type="submit" value="Cancel" class="btn">
+        </form>
+    
+</div>
+</body>
+</html>
