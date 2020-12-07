@@ -1,0 +1,13 @@
+
+/* Added this class for styling the sub heading  Today,Tomorrow ,Upcoming*/
+.box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid;
+   }
+/* added the class to padding to the icon*/
+.view-task-icon{
+    
+    padding-top: 15px;
+}
