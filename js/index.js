@@ -54,7 +54,7 @@ function validateForm(){
 
 /* returns the all null inputs in the form of coma separated string .. */
 function errorMsg( label, errorList){
-  alert('in errorMsg...'+errorList);
+  
     
     if( errorList == null ||errorList=='') 
         {
