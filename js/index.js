@@ -1,5 +1,5 @@
 function validateForm(){
-   
+    let errorList='';
     let form = document.forms[0];
         let name = form.querySelector('input[name="taskName"]');
         
@@ -14,32 +14,54 @@ function validateForm(){
             const name1 = newTaskNameInput.value;
             alert('using ids...'+name1); */
            
-        
-          if(!validateFormInputs(nameValue,'Task Name')){
-            form.taskName.focus();
-          }
-          else if(!validateFormInputs(taskDesc,'Task Description')){
-            form.taskDesc.focus();
-          }
-         else if(!validateFormInputs(assignTo,'Assign To')){
-            form.assignedTo.focus();
-          }
-         return true;
-      
-}
-
-function validateFormInputs(inputData , label){
-    
-    if(inputData.length==0 || inputData == null ||inputData=='') 
-        {
-           document.getElementById('errorMsg').style.display='block';
-           document.getElementById('errorMsg').innerHTML  =` Please enter   ${label} `;
-           return false;
-       }else {
+       
+        if(nameValue.length==0){
+          errorList = errorMsg('Task Name',errorList);
+           
+        }
+        if(taskDesc.length==0){
+          errorList=errorMsg('Task Description',errorList);
+          
+       }
+       if(assignTo.length==0){
+        errorList=errorMsg('Assign To',errorList);
+       }
+     
+       /* The below if-else displays the list of null  input fields and throws the focus to first input field in the errorList */
+     if(errorList.length>0)
+     {
+        document.getElementById('errorMsg').style.display='block';
+        document.getElementById('errorMsg').innerHTML  =` Please enter   ${errorList} `;
+        if(nameValue.length==0){
+              form.taskName.focus();
+        }
+        else if(taskDesc.length==0){
+              form.taskDesc.focus();
+            }
+        else{
+              form.assignedTo.focus();
+            }
+        return false;
+     }
+     else{
         document.getElementById('errorMsg').style.display='none';
         document.getElementById('errorMsg').innerHTML='';
 
-           return true;
-       }
+     }
+
+      
+} // End Of validateForm function
+
+/* returns the all null inputs in the form of coma separated string .. */
+function errorMsg( label, errorList){
+  alert('in errorMsg...'+errorList);
+    
+    if( errorList == null ||errorList=='') 
+        {
+          errorList=label;
+        }else {
+          errorList=errorList+ " , "+label;
+        }
+       return errorList;
 
     } 
