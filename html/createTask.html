@@ -10,34 +10,35 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <title>Tasks planner</title>
+   
 </head>
 <body>
     <div class="container">
-        <div class="row mb-5">
-            <div class="col">
-                <h2 class="bg-dark text-white">New Task</h2>
-                <form id="newTaskForm">
+        <!--<div class="row mb-5">
+            <div class="col">-->
+                <h2  class="bg-dark text-white mb-3 mt-3" >New Task</h2>
+                <form id="newTaskForm" action="../index.html">
                     <div class="form-group">
-                        <label for="newTask">Name</label>
-                        <input type="text" class="form-control" id="newTask">
+                        <label for="newTask" ><strong>Task Name</strong></label>
+                        <input type="text" class="form-control" name="taskName" id="newTask">
                     </div>
                     <div class="form-group">
-                        <label for="newTaskDescription">Description</label>
-                        <textarea type="text" class="form-control" id="newTaskDescription"></textarea>
+                        <label for="newTaskDescription"><strong>Task Description</strong></label>
+                        <textarea type="text" class="form-control" name="taskDesc" id="newTaskDescription"></textarea>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
-                            <label for="newTaskAssignedTo">Assigned To</label>
-                            <input type="text" class="form-control" id="newTaskAssignedTo">
+                        <div class="form-group col-md-6">
+                            <label for="newTaskAssignedTo" ><strong>Assigned To</strong></label>
+                            <input type="text" class="form-control" name="assignedTo" id="newTaskAssignedTo">
                         </div>
-                        <div class="form-group col">
-                            <label for="newTaskDueDate">Due Date</label>
-                            <input type="date" class="form-control" id="newTaskDueDate">
+                        <div class="form-group col-md-6">
+                            <label for="newTaskDueDate" ><strong>Due Date</strong> </label>
+                            <input type="date" class="form-control" name="dueDate" id="newTaskDueDate" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="custom-select" id="selectStatus">
+                        <label for="status" id="statusSelect"><strong>Status</strong></label>
+                        <select class="custom-select" name="status" id="selectStatus">
                            
                             <option selected value="todo">TO DO</option>
                             <option value="inProgress">IN PROGRESS</option>
@@ -45,15 +46,33 @@
                             <option value="done">DONE</option>
                           </select>
                     </div>
-                    <!--<button type="submit" class="btn btn-dark btn-lg">Add Task</button>
-                    <button type="submit" class="btn btn-dark btn-lg">Cancel Task</button>-->
-                    <a class="btn btn-dark btn-lg" href="../index.html" role="button">Add Task</a>
+                    <button type="button" class="btn btn-dark btn-lg" onclick="validateForm()">Add Task</button>
+                    <!--<button type="submit" class="btn btn-dark btn-lg" onclick="validateForm()">Add Task</button>-->
+                    <!--<button type="submit" class="btn btn-dark btn-lg">Cancel Task</button>-->
+                    <!--<a class="btn btn-dark btn-lg" role="button" onclick="validateForm()">Add Task</a>-->
                     <a class="btn btn-dark btn-lg" href="../index.html" role="button">Cancel Task</a>
                 </form>
-            </div>
-        </div>
 
-    </div>
+                <div class="alert alert-danger mt-3 " role="alert" id="errorMsg" style="display: none;">
+                  
+                </div>
+
+            <!--</div>
+        </div>-->
+
+    </div> <!--end of container div -->
+    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>-->
+
+
+    <script type = "text/javascript" src = "../js/index.js"></script>
     
 </body>
-</html>
+</html> 
