@@ -1,8 +1,13 @@
 
+import {TaskManager} from './taskManager.js';
+
+const form = document.forms[0];
 const  addTaskButton = document.getElementById('submit');
+const tasksList = new TaskManager(0);
+
 addTaskButton.addEventListener('click', function() {
   let errorList='';
-  let form = document.forms[0];
+ 
       //form.addEventListener
       let name = form.querySelector('input[name="taskName"]');
       
@@ -11,7 +16,7 @@ addTaskButton.addEventListener('click', function() {
       let assignTo=(form.querySelector('input[name="assignedTo"]')).value;
       let dueDate=(form.querySelector('input[name="dueDate"]')).value;
       let status=(form.querySelector('select[name="status"]')).value;
-    
+     
       if(nameValue.length==0){
         errorList = errorMsg('Task Name',errorList);
          
@@ -45,9 +50,23 @@ addTaskButton.addEventListener('click', function() {
       document.getElementById('errorMsg').innerHTML='';
 
    }
+  
+ 
+  tasksList.addTask(nameValue,taskDesc,assignTo,dueDate);
 
-
+   clearFormInputs();
+  
 });
+
+
+function clearFormInputs(){
+  (form.querySelector('input[name="taskName"]')).value='';
+  (form.querySelector('textarea[name="taskDesc"]')).value ='';
+  (form.querySelector('input[name="assignedTo"]')).value='';
+  (form.querySelector('input[name="dueDate"]')).value='';
+  
+}
+
 
 /* returns the all null inputs in the form of coma separated string .. */
 function errorMsg( label, errorList){
