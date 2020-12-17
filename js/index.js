@@ -50,10 +50,9 @@ addTaskButton.addEventListener('click', function() {
       document.getElementById('errorMsg').innerHTML='';
 
    }
-  
- 
   tasksList.addTask(nameValue,taskDesc,assignTo,dueDate);
-
+  tasksList.render();
+  // console.log(tasksList.tasks); 
    clearFormInputs();
   
 });
