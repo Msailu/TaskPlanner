@@ -1,15 +1,16 @@
 /** Code added for task6 */
 /**The Below function accepts the input parameters and builds dynamic HTML String   */
-function createTaskHtml(taskName,taskDesc,assignedTo,dueDate,status){
-    const html=`<div class="col-auto mb-3">
+function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
+    const html=`<div class="col-auto mb-3" data-task-id=${id}>
                     <div class="card border-secondary mb-3" style="width: 18rem;">
                         <div class="card-header"><h5>${taskName}</h5></div>
                         <div class="card-body">
                             <p class="card-text " ><strong> Description : </strong>${taskDesc}</p>
                             <p class="card-text "><strong>Assigned To:</strong> ${assignedTo}</p>
-                            <p class="card-text"><strong>Due Date:</strong> ${dueDate}</p>
-                            <p> <span class="badge badge-primary">${status}</span></p>
+                            <p class="card-text"><strong>Due Date:</strong>  ${dueDate}</p>
+                            <p> <span class="badge ${status ==='TO DO' ? 'badge-danger' :'badge-success'}">${status}</span></p>
                             <a href="#" class="btn btn-primary">Edit</a>
+                            <a href="#" class="btn btn-primary done-button ${status ==='TO DO' ? 'visible' : 'invisible'} ">Mark As Done</a>
                         </div>
                     </div>
                 </div>`;
@@ -26,14 +27,14 @@ function createTaskHtml(taskName,taskDesc,assignedTo,dueDate,status){
 
     } //end of constructor
     /* Method to accept form inputs and add to array*/
-    addTask(taskName,taskDesc,assignedTo,dueDate){
+    addTask(taskName,taskDesc,assignedTo,dueDate,status){
         const task={
         Id:this.currentId++,
         name:taskName,
         description:taskDesc,
         assignedTo:assignedTo,
         dueDate:dueDate,
-        status:'TODO',
+        status:status,
          
         };//task obj; 
         this.tasks.push(task);
@@ -58,7 +59,7 @@ function createTaskHtml(taskName,taskDesc,assignedTo,dueDate,status){
               const formattedDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
   
               //preparing html string format
-              const taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
+              const taskHtml = createTaskHtml(task.Id, task.name, task.description, task.assignedTo, formattedDate, task.status);
               tasksHtmlList.push(taskHtml);
               console.log('task html is..') ; 
               console.log(tasksHtmlList);
@@ -70,6 +71,30 @@ function createTaskHtml(taskName,taskDesc,assignedTo,dueDate,status){
           } //end of for loop
     }//end of render methd
     
+    getTaskById(taskId ){
+        // // Create a variable to store the found task
+        let foundTask ;
+            console.log('in getTaskById...');
+            console.log(taskId);
+        // Loop over the tasks and find the task with the id passed as a parameter
+        for(let i=0 ;i<this.tasks.length;i++){
+
+             // Get the current task in the loop
+            const task=this.tasks[i];
+            console.log('in for');
+            console.log(this.tasks[i]);
+            // Check if its the right task by comparing the task's id to the id passed as a parameter
+            if (task.Id===taskId){
+                foundTask=task;
+
+            }
+
+        } //end of for loop
+        
+        console.log(' returning foundTask...');
+        console.log(foundTask);
+        return foundTask;
+    }//end of getTaskById() method
 
 }//end Od TaskManager Class
 
