@@ -3,7 +3,7 @@ import {TaskManager} from './taskManager.js';
 
 const form = document.forms[0];
 const  addTaskButton = document.getElementById('submit');
-const tasksList = new TaskManager(0);
+const taskManager = new TaskManager(0);
 
 addTaskButton.addEventListener('click', function() {
   let errorList='';
@@ -16,14 +16,12 @@ addTaskButton.addEventListener('click', function() {
       let assignTo=(form.querySelector('input[name="assignedTo"]')).value;
       let dueDate=(form.querySelector('input[name="dueDate"]')).value;
       let status=(form.querySelector('select[name="status"]')).value;
-     
-      if(nameValue.length==0){
+      
+      if(nameValue.length==0 || nameValue == null || nameValue=='' ){
         errorList = errorMsg('Task Name',errorList);
-         
       }
       if(taskDesc.length==0){
         errorList=errorMsg('Task Description',errorList);
-        
      }
      if(assignTo.length==0){
       errorList=errorMsg('Assign To',errorList);
@@ -50,9 +48,9 @@ addTaskButton.addEventListener('click', function() {
       document.getElementById('errorMsg').innerHTML='';
 
    }
-  tasksList.addTask(nameValue,taskDesc,assignTo,dueDate);
-  tasksList.render();
-  // console.log(tasksList.tasks); 
+   taskManager.addTask(nameValue,taskDesc,assignTo,dueDate,status);
+   taskManager.render();
+  // console.log(taskManager.tasks); 
    clearFormInputs();
   
 });
@@ -80,3 +78,36 @@ function errorMsg( label, errorList){
        return errorList;
 
     } 
+
+    /* Code to change the taskStatus to done when clicked on Mark As Done button  */
+    const taskList = document.querySelector('#tasksList');
+    console.log('taskList ...'+taskList);
+
+    taskList.addEventListener('click', (event)=>{   // "event" here is the event parameter
+        console.log(event.target);
+
+        if (event.target.classList.contains('done-button')){ //Clicked Mard as Done
+           // Get the parent Task
+           console.log('first parent..')
+           console.log(event.target.parentElement);
+           const parentTask = event.target.parentElement.parentElement.parentElement;
+           console.log('parent...Parent Task ....')
+           console.log(parentTask);
+
+           // Get the taskId of the parent Task.
+           const taskId = Number(parentTask.dataset.taskId);
+           console.log('taskid we are passing to getTaskById Function')
+           console.log(taskId);
+
+           const foundTask=taskManager.getTaskById(taskId);
+           foundTask.status='DONE';
+          console.log(foundTask);
+           taskManager.render();
+
+        } // end of if
+
+    }) //end of taskList.addEventListener
+
+   
+
+    /* Code to change the taskStatus to done when clicked on Mark As Done button  Ends here*/

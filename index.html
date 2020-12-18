@@ -20,11 +20,8 @@
 <body>
     <div class="container">
         <!-- Code to call create Card-->
-        <!--<div class="icon-plus">
-            <a class=" btn" href="html/createTask.html" role="button"><span class="fa fa-plus text-secondary view-task-icon" ></span></a>
-         </div>-->
-
-         <div class="icon-plus">
+        
+         <div class="addNewTaskButton">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal">
                <!-- Launch demo modal-->
                Add New Task
@@ -35,7 +32,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Add Task</h5>
+                  <h2 class="modal-title">New Task</h2>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -65,10 +62,10 @@
                             <label for="status" id="statusSelect"><strong>Status</strong></label>
                             <select class="custom-select" name="status" id="selectStatus">
                                
-                                <option selected value="todo">TO DO</option>
-                                <option value="inProgress">IN PROGRESS</option>
-                                <option value="review">REVIEW</option>
-                                <option value="done">DONE</option>
+                                <option selected value="TO DO">TO DO</option>
+                                <option value="IN PROGRESS">IN PROGRESS</option>
+                                <option value="REVIEW">REVIEW</option>
+                                <option value="DONE">DONE</option>
                               </select>
                         </div>
     
@@ -100,10 +97,10 @@
             <select class="custom-select" id="inputStatus">
               <option >Choose...</option>
               <option value="1" selected >All</option>
-              <option selected >TO DO</option>
-                            <option value="inProgress">IN PROGRESS</option>
-                            <option value="review">REVIEW</option>
-                            <option value="done">DONE</option>
+              <option selected value='TODO'>TO DO</option>
+                            <option value="INPROGRESS">IN PROGRESS</option>
+                            <option value="REVIEW">REVIEW</option>
+                            <option value="DONE">DONE</option>
             </select>
             <div class="input-group-append">
               <label class="input-group-text" for="inputStatus">Status</label>
