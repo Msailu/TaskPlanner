@@ -4,6 +4,8 @@ import {TaskManager} from './taskManager.js';
 const form = document.forms[0];
 const  addTaskButton = document.getElementById('submit');
 const taskManager = new TaskManager(0);
+taskManager.load();
+taskManager.render();
 
 addTaskButton.addEventListener('click', function() {
   let errorList='';
@@ -52,6 +54,7 @@ addTaskButton.addEventListener('click', function() {
    taskManager.render();
   // console.log(taskManager.tasks); 
    clearFormInputs();
+   taskManager.save();
   
 });
 

@@ -95,8 +95,42 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
         console.log(foundTask);
         return foundTask;
     }//end of getTaskById() method
+    // Code added for task 8 --13-Jan-2021
+    //Adding the task to localStorage
+    save(){
+        
+        let tasksJson=JSON.stringify(this.tasks);
+        console.log('tasksJson.....');
+        console.log(tasksJson);
+        localStorage.setItem('tasks',tasksJson);
+
+        let currentId=this.currentId.toString();
+        localStorage.setItem('currentId',currentId);
+
+    }// end of save method
+
+    //Code added for task 8 --13-Jan-2021
+    //Adding them to task array
+    load(){
+        let tasksJson;
+        let currentId;
+        if (localStorage.getItem('tasks'))
+        {
+            tasksJson= localStorage.getItem('tasks');
+            this.tasks=JSON.parse(tasksJson);
+        }
+            if(localStorage.getItem('currentId'))
+            {
+                currentId=localStorage.getItem('currentId');
+                this.currentId=Number(currentId);
+            }
+       
+
+    }//end of load
+
 
 }//end Od TaskManager Class
+
 
 
 
