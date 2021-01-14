@@ -50,7 +50,11 @@ addTaskButton.addEventListener('click', function() {
    }
    taskManager.addTask(nameValue,taskDesc,assignTo,dueDate,status);
    taskManager.render();
+   
   // console.log(taskManager.tasks); 
+
+  //Code Added for Local Storage Task 8 on 13-Jan-2021
+  taskManager.save();
    clearFormInputs();
   
 });
@@ -79,7 +83,8 @@ function errorMsg( label, errorList){
 
     } 
 
-    /* Code to change the taskStatus to done when clicked on Mark As Done button  */
+    /* Updating Task 
+    Code to change the taskStatus to done when clicked on Mark As Done button  */
     const taskList = document.querySelector('#tasksList');
     console.log('taskList ...'+taskList);
 
@@ -105,9 +110,9 @@ function errorMsg( label, errorList){
            taskManager.render();
 
         } // end of if
+        
+  
 
     }) //end of taskList.addEventListener
 
    
-
-    /* Code to change the taskStatus to done when clicked on Mark As Done button  Ends here*/

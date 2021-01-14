@@ -96,6 +96,20 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
         return foundTask;
     }//end of getTaskById() method
 
+    // Code added for task 8 --13-Jan-2021
+    save(){
+       
+        let tasksJson=JSON.stringify(this.tasks);
+        console.log('tasksJson.....');
+        console.log(tasksJson);
+        localStorage.setItem('tasks',tasksJson);
+
+        //let currentId=String(this.currentId);
+        let currentId=this.currentId.toString();
+        localStorage.setItem('currentId',currentId);
+
+    }// end of save method
+
 }//end Od TaskManager Class
 
 
