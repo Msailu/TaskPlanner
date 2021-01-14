@@ -51,10 +51,11 @@ addTaskButton.addEventListener('click', function() {
 
    }
    taskManager.addTask(nameValue,taskDesc,assignTo,dueDate,status);
+   taskManager.save();
    taskManager.render();
   // console.log(taskManager.tasks); 
    clearFormInputs();
-   taskManager.save();
+  
   
 });
 
@@ -94,7 +95,7 @@ function errorMsg( label, errorList){
            console.log('first parent..')
            console.log(event.target.parentElement);
            const parentTask = event.target.parentElement.parentElement.parentElement;
-           console.log('parent...Parent Task ....')
+           console.log('parent...Parent Task ....');
            console.log(parentTask);
 
            // Get the taskId of the parent Task.
@@ -108,6 +109,29 @@ function errorMsg( label, errorList){
            taskManager.render();
 
         } // end of if
+
+
+        //When clicked on Delete button
+        if(event.target.classList.contains('delete-button'))
+        {
+         
+            const parentTask = event.target.parentElement.parentElement.parentElement;
+            console.log('first parent..')
+           console.log(event.target.parentElement);
+
+           const deleteTask = event.target.parentElement.parentElement.parentElement;
+
+           console.log('parent...Parent Task ....');
+
+           console.log(deleteTask);
+            const taskId = Number(deleteTask.dataset.taskId);
+
+            console.log('in delete method...')
+            console.log(taskId);
+            taskManager.deleteTask(taskId);
+            taskManager.save();
+            taskManager.render();
+        }
 
     }) //end of taskList.addEventListener
 
