@@ -21,7 +21,9 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
 } // end of createTaskHtml
  /** Code added for task6 ends here*/
  
- export class TaskManager{
+ //export class TaskManager{ --- this line is required for the code to work in browser
+   // module.exports= class TaskManager{  //this line is required for the code to work with npm mocha
+   class TaskManager{   
     constructor(currentId){
         this.tasks = [];
         this.currentId=0;
@@ -45,14 +47,17 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
     deleteTask(taskId){
         let newTasks = [];
         //loop over the tasks
+        console.log('--------------------------------------');
+        console.log("Length Of the array before deletion");
+        console.log(this.tasks.length);
         for(let i=0;i<this.tasks.length;i++){
-            console.log('--------------------------------------');
+            
            
            
             let task=this.tasks[i];
-            console.log(JSON.stringify(this.tasks[i]) +'...'+i +'....'+task);
+            console.log(JSON.stringify(this.tasks[i]) +'...'+i +'....'+JSON.stringify(task));
             console.log('comapre')
-            console.log(task.id +'....'+taskId);
+            console.log(task.Id +'....'+taskId);
             if(task.Id !== taskId){
                 newTasks.push(task);
             }
@@ -63,7 +68,7 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
         console.log(newTasks);
        
         this.tasks=newTasks;
-        console.log(this.tasks)
+      
         // taskManager.save();
         // taskManager.render();
     }
