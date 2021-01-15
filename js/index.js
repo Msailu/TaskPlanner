@@ -1,5 +1,5 @@
 
-import {TaskManager} from './taskManager.js';
+//import {TaskManager} from './taskManager.js';
 
 const form = document.forms[0];
 const  addTaskButton = document.getElementById('submit');
@@ -85,7 +85,7 @@ function errorMsg( label, errorList){
 
     /* Code to change the taskStatus to done when clicked on Mark As Done button  */
     const taskList = document.querySelector('#tasksList');
-    console.log('taskList ...'+taskList);
+    console.log('taskList ...'+JSON.stringify(taskList));
 
     taskList.addEventListener('click', (event)=>{   // "event" here is the event parameter
         console.log(event.target);
