@@ -22,8 +22,8 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
  /** Code added for task6 ends here*/
  
  //export class TaskManager{ --- this line is required for the code to work in browser
-   // module.exports= class TaskManager{  //this line is required for the code to work with npm mocha
-   class TaskManager{   
+ class TaskManager{  //this line is required for the code to work with npm mocha
+   //class TaskManager{   
     constructor(currentId){
         this.tasks = [];
         this.currentId=0;
@@ -181,7 +181,7 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
     }// end of save method
 
 }//end Od TaskManager Class
-
+module.exports= TaskManager;
 
 
 
