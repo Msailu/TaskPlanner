@@ -1,9 +1,11 @@
 
-import {TaskManager} from './taskManager.js';
+//import {TaskManager} from './taskManager.js';
 
 const form = document.forms[0];
 const  addTaskButton = document.getElementById('submit');
 const taskManager = new TaskManager(0);
+taskManager.load();
+taskManager.render();
 
 addTaskButton.addEventListener('click', function() {
   let errorList='';
@@ -49,9 +51,15 @@ addTaskButton.addEventListener('click', function() {
 
    }
    taskManager.addTask(nameValue,taskDesc,assignTo,dueDate,status);
+   taskManager.save();
    taskManager.render();
+   
   // console.log(taskManager.tasks); 
+
+  //Code Added for Local Storage Task 8 on 13-Jan-2021
+  taskManager.save();
    clearFormInputs();
+  
   
 });
 
@@ -79,9 +87,10 @@ function errorMsg( label, errorList){
 
     } 
 
-    /* Code to change the taskStatus to done when clicked on Mark As Done button  */
+    /* Updating Task 
+    Code to change the taskStatus to done when clicked on Mark As Done button  */
     const taskList = document.querySelector('#tasksList');
-    console.log('taskList ...'+taskList);
+    console.log('taskList ...'+JSON.stringify(taskList));
 
     taskList.addEventListener('click', (event)=>{   // "event" here is the event parameter
         console.log(event.target);
@@ -91,7 +100,7 @@ function errorMsg( label, errorList){
            console.log('first parent..')
            console.log(event.target.parentElement);
            const parentTask = event.target.parentElement.parentElement.parentElement;
-           console.log('parent...Parent Task ....')
+           console.log('parent...Parent Task ....');
            console.log(parentTask);
 
            // Get the taskId of the parent Task.
@@ -105,9 +114,32 @@ function errorMsg( label, errorList){
            taskManager.render();
 
         } // end of if
+        
+  
+
+
+        //When clicked on Delete button
+        if(event.target.classList.contains('delete-button'))
+        {
+         
+            const parentTask = event.target.parentElement.parentElement.parentElement;
+            console.log('first parent..')
+           console.log(event.target.parentElement);
+
+           const deleteTask = event.target.parentElement.parentElement.parentElement;
+
+           console.log('parent...Parent Task ....');
+
+           console.log(deleteTask);
+            const taskId = Number(deleteTask.dataset.taskId);
+
+            console.log('in delete method...')
+            console.log(taskId);
+            taskManager.deleteTask(taskId);
+            taskManager.save();
+            taskManager.render();
+        }
 
     }) //end of taskList.addEventListener
 
    
-
-    /* Code to change the taskStatus to done when clicked on Mark As Done button  Ends here*/

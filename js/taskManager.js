@@ -11,6 +11,7 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
                             <p> <span class="badge ${status ==='TO DO' ? 'badge-danger' :'badge-success'}">${status}</span></p>
                             <a href="#" class="btn btn-primary">Edit</a>
                             <a href="#" class="btn btn-primary done-button ${status ==='TO DO' ? 'visible' : 'invisible'} ">Mark As Done</a>
+                            <a href="#" class="btn btn-primary delete-button">Delete</a>
                         </div>
                     </div>
                 </div>`;
@@ -20,7 +21,9 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
 } // end of createTaskHtml
  /** Code added for task6 ends here*/
  
- export class TaskManager{
+ //export class TaskManager{ --- this line is required for the code to work in browser
+ class TaskManager{  //this line is required for the code to work with npm mocha
+   //class TaskManager{   
     constructor(currentId){
         this.tasks = [];
         this.currentId=0;
@@ -40,6 +43,35 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
         this.tasks.push(task);
         console.log(task);
     } //end of add task method
+
+    deleteTask(taskId){
+        let newTasks = [];
+        //loop over the tasks
+        console.log('--------------------------------------');
+        console.log("Length Of the array before deletion");
+        console.log(this.tasks.length);
+        for(let i=0;i<this.tasks.length;i++){
+            
+           
+           
+            let task=this.tasks[i];
+            console.log(JSON.stringify(this.tasks[i]) +'...'+i +'....'+JSON.stringify(task));
+            console.log('comapre')
+            console.log(task.Id +'....'+taskId);
+            if(task.Id !== taskId){
+                newTasks.push(task);
+            }
+    
+        }//end of for loop
+        console.log('checking for new tasklength');
+        console.log(newTasks.length);
+        console.log(newTasks);
+       
+        this.tasks=newTasks;
+      
+        // taskManager.save();
+        // taskManager.render();
+    }
 
     /**The below method renders the task to html page */
     render(){
@@ -64,11 +96,12 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
               console.log('task html is..') ; 
               console.log(tasksHtmlList);
             
-              // Set the inner html of the tasksList on the page
-              const tasksHtml = tasksHtmlList.join('\n');
-              const tasksList = document.querySelector('#tasksList');
-              tasksList.innerHTML = tasksHtml;
+             
           } //end of for loop
+           // Set the inner html of the tasksList on the page
+           const tasksHtml = tasksHtmlList.join('\n');
+           const tasksList = document.querySelector('#tasksList');
+           tasksList.innerHTML = tasksHtml;
     }//end of render methd
     
     getTaskById(taskId ){
@@ -95,8 +128,60 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
         console.log(foundTask);
         return foundTask;
     }//end of getTaskById() method
+    // Code added for task 8 --13-Jan-2021
+    //Adding the task to localStorage
+    save(){
+        
+        let tasksJson=JSON.stringify(this.tasks);
+        console.log('tasksJson.....save method');
+        console.log(tasksJson);
+        localStorage.setItem('tasks',tasksJson);
+        console.log('insave------------------------------------');
+        console.log(this.tasks);
+        let currentId=String(this.currentId);
+        localStorage.setItem('currentId',currentId);
+
+    }// end of save method
+
+    //Code added for task 8 on  --13-Jan-2021
+    //Adding them to task array
+    load(){
+       
+        
+        if (localStorage.getItem('tasks'))
+        {
+           
+            const tasksJson= localStorage.getItem('tasks');
+            this.tasks=JSON.parse(tasksJson);
+        }
+            if(localStorage.getItem('currentId'))
+            {
+               const currentId=localStorage.getItem('currentId');
+                this.currentId=Number(currentId);
+            }
+       
+
+    }//end of load
+    //Code added for task 9 on --13-Jan-2021
+    
+    
+
+    // Code added for task 8 --13-Jan-2021
+    save(){
+       
+        let tasksJson=JSON.stringify(this.tasks);
+        console.log('tasksJson.....');
+        console.log(tasksJson);
+        localStorage.setItem('tasks',tasksJson);
+
+        //let currentId=String(this.currentId);
+        let currentId=this.currentId.toString();
+        localStorage.setItem('currentId',currentId);
+
+    }// end of save method
 
 }//end Od TaskManager Class
+module.exports= TaskManager;
 
 
 
