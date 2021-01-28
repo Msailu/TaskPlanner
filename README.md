@@ -24,5 +24,8 @@ Testing : NPM , MOCHA Testing suites
             "test": "mocha ./test/test.js"
             }
 
+ ##Link to Github Pages
+ https://msailu.github.io/TaskPlanner/           
+
 
 
