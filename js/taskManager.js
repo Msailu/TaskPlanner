@@ -9,7 +9,7 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
                             <p class="card-text "><strong>Assigned To:</strong> ${assignedTo}</p>
                             <p class="card-text"><strong>Due Date:</strong>  ${dueDate}</p>
                             <p> <span class="badge ${status ==='TO DO' ? 'badge-danger' :'badge-success'}">${status}</span></p>
-                            <a href="#" class="btn btn-primary">Edit</a>
+                           
                             <a href="#" class="btn btn-primary done-button ${status ==='TO DO' ? 'visible' : 'invisible'} ">Mark As Done</a>
                             <a href="#" class="btn btn-primary delete-button">Delete</a>
                         </div>
@@ -41,31 +41,31 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
          
         };//task obj; 
         this.tasks.push(task);
-        console.log(task);
+       // console.log(task);
     } //end of add task method
 
     deleteTask(taskId){
         let newTasks = [];
         //loop over the tasks
-        console.log('--------------------------------------');
-        console.log("Length Of the array before deletion");
-        console.log(this.tasks.length);
+        // console.log('--------------------------------------');
+        // console.log("Length Of the array before deletion");
+        // console.log(this.tasks.length);
         for(let i=0;i<this.tasks.length;i++){
             
            
            
             let task=this.tasks[i];
-            console.log(JSON.stringify(this.tasks[i]) +'...'+i +'....'+JSON.stringify(task));
-            console.log('comapre')
-            console.log(task.Id +'....'+taskId);
+            // console.log(JSON.stringify(this.tasks[i]) +'...'+i +'....'+JSON.stringify(task));
+            // console.log('comapre')
+            // console.log(task.Id +'....'+taskId);
             if(task.Id !== taskId){
                 newTasks.push(task);
             }
     
         }//end of for loop
-        console.log('checking for new tasklength');
-        console.log(newTasks.length);
-        console.log(newTasks);
+        // console.log('checking for new tasklength');
+        // console.log(newTasks.length);
+        // console.log(newTasks);
        
         this.tasks=newTasks;
       
@@ -78,7 +78,7 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
 
         // debugger;
           const tasksHtmlList=[];
-          console.log(`in render ...number of tasks is ${this.tasks.length}`);
+         // console.log(`in render ...number of tasks is ${this.tasks.length}`);
   
           //looping over the tasks and preparing the html string to be displayed in html"
           for(let i=0 ;i<this.tasks.length;i++)
@@ -93,8 +93,8 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
               //preparing html string format
               const taskHtml = createTaskHtml(task.Id, task.name, task.description, task.assignedTo, formattedDate, task.status);
               tasksHtmlList.push(taskHtml);
-              console.log('task html is..') ; 
-              console.log(tasksHtmlList);
+            //   console.log('task html is..') ; 
+            //   console.log(tasksHtmlList);
             
              
           } //end of for loop
@@ -107,15 +107,15 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
     getTaskById(taskId ){
         // // Create a variable to store the found task
         let foundTask ;
-            console.log('in getTaskById...');
-            console.log(taskId);
+            // console.log('in getTaskById...');
+            // console.log(taskId);
         // Loop over the tasks and find the task with the id passed as a parameter
         for(let i=0 ;i<this.tasks.length;i++){
 
              // Get the current task in the loop
             const task=this.tasks[i];
-            console.log('in for');
-            console.log(this.tasks[i]);
+            // console.log('in for');
+            // console.log(this.tasks[i]);
             // Check if its the right task by comparing the task's id to the id passed as a parameter
             if (task.Id===taskId){
                 foundTask=task;
@@ -124,8 +124,8 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
 
         } //end of for loop
         
-        console.log(' returning foundTask...');
-        console.log(foundTask);
+        // console.log(' returning foundTask...');
+        // console.log(foundTask);
         return foundTask;
     }//end of getTaskById() method
     // Code added for task 8 --13-Jan-2021
@@ -133,11 +133,11 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
     save(){
         
         let tasksJson=JSON.stringify(this.tasks);
-        console.log('tasksJson.....save method');
-        console.log(tasksJson);
+        // console.log('tasksJson.....save method');
+        // console.log(tasksJson);
         localStorage.setItem('tasks',tasksJson);
-        console.log('insave------------------------------------');
-        console.log(this.tasks);
+        // console.log('insave------------------------------------');
+        // console.log(this.tasks);
         let currentId=String(this.currentId);
         localStorage.setItem('currentId',currentId);
 
@@ -170,8 +170,8 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
     save(){
        
         let tasksJson=JSON.stringify(this.tasks);
-        console.log('tasksJson.....');
-        console.log(tasksJson);
+        // console.log('tasksJson.....');
+        // console.log(tasksJson);
         localStorage.setItem('tasks',tasksJson);
 
         //let currentId=String(this.currentId);
