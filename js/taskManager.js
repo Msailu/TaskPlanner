@@ -181,7 +181,10 @@ function createTaskHtml(id,taskName,taskDesc,assignedTo,dueDate,status){
     }// end of save method
 
 }//end Od TaskManager Class
+
+if (typeof module != "undefined") {
 module.exports= TaskManager;
+}
 
 
 
